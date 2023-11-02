@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  zone: MyString
+  seat: 1
+  price: 1
+  concert: one
+
+two:
+  zone: MyString
+  seat: 1
+  price: 1
+  concert: two

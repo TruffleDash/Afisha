@@ -1,0 +1,42 @@
+<%= form_with model: concert do |form| %>
+  <div>
+    <%= form.label :title %><br>
+    <%= form.text_field :title %>
+    <% concert.errors.full_messages_for(:title).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+
+  </div>
+
+  <div>
+    <%= form.label :body %><br>
+    <%= form.text_area :body %>
+    <% concert.errors.full_messages_for(:body).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.label :price_balcony %><br>
+    <%= form.number_field :price_balcony %>
+    <% concert.errors.full_messages_for(:price_balcony).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+    <div>
+    <%= form.label :price_amphitheater %><br>
+    <%= form.number_field :price_amphitheater %>
+    <% concert.errors.full_messages_for(:price_amphitheater).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+    <div>
+    <%= form.label :price_ground_floor %><br>
+    <%= form.number_field :price_ground_floor %>
+    <% concert.errors.full_messages_for(:price_ground_floor).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,11 @@
+<h1>Afisha</h1>
+<ul> 
+  <% @concerts.each do |concert| %>
+   <%if concert.status != 'sold_out'  %>
+      <li>
+        <%= link_to concert.title, concert%>
+      </li>
+    <% end %>
+  <% end %>
+</ul> 
+<%= link_to "New Concert", new_concert_path %>
