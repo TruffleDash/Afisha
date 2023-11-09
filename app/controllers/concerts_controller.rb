@@ -1,4 +1,5 @@
-class ConcertsController < ApplicationController
+class ConcertsController < ApplicationController 
+  before_action :authenticate_user!, only: [:new, :create, :update]
   def index
     @concerts = Concert.all  
   end
