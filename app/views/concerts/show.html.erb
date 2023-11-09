@@ -5,13 +5,15 @@
 <p><%= @concert.price_amphitheater %> amphitheater</p>
 <p><%= @concert.price_ground_floor %> ground_floor</p>
 
-<h2>Buy tickets</h2>
-<%= form_with model: [ @concert, @concert.tickets.build ] do |form| %>
-  <p>
-    <%= form.label :seat %><br>
-    <%= form.select :seat, available_seats(@concert) %>
-  </p>
-  <p>
-    <%= form.submit %>
-  </p>
+<% if user_signed_in? %>
+  <h2>Buy tickets</h2>
+  <%= form_with model: [ @concert, @concert.tickets.build ] do |form| %>
+    <p>
+      <%= form.label :seat %><br>
+      <%= form.select :seat, available_seats(@concert) %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
 <% end %>
