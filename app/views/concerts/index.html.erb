@@ -1,13 +1,15 @@
-<h1>Afisha</h1>
-<ul> 
-  <% @concerts.each do |concert| %>
-   <%if concert.status != 'sold_out'  %>
-      <li>
-        <%= link_to concert.title, concert%>
-      </li>
+<div class="container py-4" style="background-color: #f8f9fa;"> 
+  <h1 class="page-header text-center" style="color: #6c757d;">Afisha</h1> 
+  <ul class="list-group list-group-flush my-4">
+    <% @concerts.each do |concert| %>
+      <% if concert.status != 'sold_out' %>
+        <li class="list-group-item" style="background-color: #e2e6ea;"> 
+          <%= link_to concert.title, concert, class: "text-decoration-none", style: "color: #495057;" %>
+        </li>
+      <% end %>
     <% end %>
+  </ul>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "New Concert", new_concert_path, class: "btn btn-info" %> 
   <% end %>
-</ul> 
-<% if user_signed_in? && current_user.admin? %>
-  <%= link_to "New Concert", new_concert_path %>
-<% end %>
+</div>
