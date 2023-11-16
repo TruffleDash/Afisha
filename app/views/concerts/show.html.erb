@@ -2,9 +2,9 @@
   <h1 class="text-center" style="color: #6c757d;"><%= @concert.title %></h1> 
 
   <h3 class="text-center" style="color: #495057;"><%= @concert.body %></h3>
-  <p style="color: #495057;"><%= @concert.price_balcony %> balcony price</p>
-  <p style="color: #495057;"><%= @concert.price_amphitheater %> amphitheater price</p>
-  <p style="color: #495057;"><%= @concert.price_ground_floor %> ground_floor price</p>
+  <p style="color: #495057;"><%= number_to_currency(@concert.price_balcony) %> balcony price</p>
+  <p style="color: #495057;"><%= number_to_currency(@concert.price_amphitheater) %> amphitheater price</p>
+  <p style="color: #495057;"><%= number_to_currency(@concert.price_ground_floor) %> ground_floor price</p>
 
   <% if user_signed_in? %>
     <h2 class="text-center mt-4" style="color: #6c757d;">Buy tickets</h2> 
@@ -14,7 +14,7 @@
         <%= form.select :seat, available_seats(@concert), {}, { class: 'form-control' } %>
       </div>
       <div class="form-group">
-        <%= form.submit 'Buy Ticket', class: 'btn btn-primary' %> 
+        <%= form.submit 'Add to cart', class: 'btn btn-primary' %> 
       </div>
     <% end %>
   <% end %>

@@ -7,6 +7,8 @@ class TicketsController < ApplicationController
   def create
     @concert = Concert.find(params[:concert_id])
     @ticket = @concert.tickets.create(ticket_params)
+    current_user.cart.tickets << @ticket
+    current_user.cart.save
     redirect_to concert_path(@concert)
   end
 

@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   resources :concerts do
     resources :tickets
   end
+
+  resources :carts, only: [:show]
 end

@@ -1,0 +1,17 @@
+<div class="container py-4" style="background-color: #f8f9fa;"> 
+  <h1 class="text-center" style="color: #6c757d;">Carts</h1>
+  <p class="text-center" style="color: #495057;">Tickets</p>
+
+  <% if @cart && @cart.cart_items.any? %>
+    <% @cart.cart_items.each do |item| %>
+      <% next if item.expired? %>
+
+      <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+        <p style="color: #495057;"><%= item.ticket.concert.title %> - <%= item.ticket.zone %> - <%= number_to_currency(item.ticket.price) %>
+          Бронь истечет после <%= (item.created_at + 20.minutes).strftime("%H:%M") %> </p>
+      </div>
+    <% end %>
+  <% else %>
+    <p class="no-tickets" style="color: #d63384;">You don't have tickets</p>
+  <% end %>
+</div>
