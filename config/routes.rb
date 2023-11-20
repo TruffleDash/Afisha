@@ -6,5 +6,10 @@ Rails.application.routes.draw do
     resources :tickets
   end
 
-  resources :carts, only: [:show]
+  resources :carts, only: [:show] do
+    member do
+      put :buy_ticket
+      delete :delete_ticket
+    end
+  end
 end

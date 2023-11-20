@@ -7,11 +7,19 @@
       <% next if item.expired? %>
 
       <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
-        <p style="color: #495057;"><%= item.ticket.concert.title %> - <%= item.ticket.zone %> - <%= number_to_currency(item.ticket.price) %>
+        <p style="color: #495057;"><%= item.ticket.concert.title %>, zone - <%= item.ticket.zone %>, seat - <%= item.ticket.seat %>, price - <%= number_to_currency(item.ticket.price) %>
           Бронь истечет после <%= (item.created_at + 20.minutes).strftime("%H:%M") %> </p>
+        <%= form_with model: @cart, url: delete_ticket_cart_path, method: :delete, local: true do |form| %>
+          <%= form.hidden_field :ticket_id, value: item.ticket_id %>
+          <%= form.submit "Remove", class: "btn btn-danger"%>
+        <% end %> 
       </div>
+      <% end %>
+    <%= form_with model: @cart, url: buy_ticket_cart_path, method: :put, local: true do |form| %>
+        <%= form.hidden_field :cart_id, value: @cart.id %>
+        <%= form.submit "Buy Tickets", class: "btn btn-primary" %>
     <% end %>
   <% else %>
     <p class="no-tickets" style="color: #d63384;">You don't have tickets</p>
   <% end %>
-</div>
+
