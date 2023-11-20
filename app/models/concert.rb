@@ -8,5 +8,15 @@ class Concert < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10 }
   validates :price_balcony, numericality: { less_than: :price_amphitheater }
   validates :price_amphitheater, numericality: { greater_than: :price_balcony, less_than: :price_ground_floor }
-  validates :price_ground_floor, numericality: { greater_than: :price_amphitheater  }
+  validates :price_ground_floor, numericality: { greater_than: :price_amphitheater }
+  validates :event_date, presence: true
+  validate :event_date_cannot_be_in_the_past
+  
+  private
+ 
+  def event_date_cannot_be_in_the_past
+    if event_date.present? && event_date < Date.today
+      errors.add(:event_date, "can't be in the past")
+    end
+  end
 end

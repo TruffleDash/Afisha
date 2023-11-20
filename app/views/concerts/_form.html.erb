@@ -38,10 +38,23 @@
       <% concert.errors.full_messages_for(:price_ground_floor).each do |message| %>
         <div style="color: #d63384;"><%= message %></div>
       <% end %>
-    </div>   
+    </div>  
     
+    <div class='form-group mb-3'> 
+      <%= form.label :event_date, class: 'form-label' %>
+      <%= form.date_field :event_date, class: 'form-control', style: "background-color: #e2e6ea;"%>
+      <% concert.errors.full_messages_for(:event_date).each do |message| %>
+        <div style="color: #d63384;"><%= message %></div>
+      <% end %>
+    </div>     
+
+    <div class='form-group mb-3'> 
+      <%= form.label :event_time, class: 'form-label' %>
+      <%= form.time_field :event_time, class: 'form-control', style: "background-color: #e2e6ea;"%>
+    </div> 
+
     <div class='form-group mb-3'>
-      <%= form.submit 'Create', class: 'btn', style: "background-color: #b8a9c9; color: #495057;" %> <!-- Кнопка с пастельными цветами -->
+      <%= form.submit 'Create', class: 'btn', style: "background-color: #b8a9c9; color: #495057;" %> 
     </div>
   <% end %>
 </div>

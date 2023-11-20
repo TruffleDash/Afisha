@@ -5,8 +5,14 @@
   <p style="color: #495057;"><%= number_to_currency(@concert.price_balcony) %> balcony price</p>
   <p style="color: #495057;"><%= number_to_currency(@concert.price_amphitheater) %> amphitheater price</p>
   <p style="color: #495057;"><%= number_to_currency(@concert.price_ground_floor) %> ground_floor price</p>
-
-  <% if user_signed_in? %>
+  <h4 class="text-center" style="color: #495057;">Date <%= @concert.event_date %></h4>
+  <h4 class="text-center" style="color: #495057;">Time <%= @concert.event_time.strftime("%H:%M") %></h4>
+  <% if user_signed_in? && current_user.admin? %>
+    <%= form_with model: @concert, method: :delete, html: { class: 'text-center mt-4' } do |form| %>
+      <%= form.submit 'Delete Concert', class: 'btn btn-danger' %>
+    <% end %>
+  <% end %>
+  <% if user_signed_in?%>
     <h2 class="text-center mt-4" style="color: #6c757d;">Buy tickets</h2> 
     <%= form_with model: [ @concert, @concert.tickets.build ], html: { class: 'text-center' } do |form| %>
       <div class="form-group">
@@ -16,11 +22,6 @@
       <div class="form-group">
         <%= form.submit 'Add to cart', class: 'btn btn-primary' %> 
       </div>
-    <% end %>
-  <% end %>
-  <% if user_signed_in? && current_user.admin? %>
-    <%= form_with model: @concert, method: :delete, html: { class: 'text-center mt-4' } do |form| %>
-      <%= form.submit 'Delete Concert', class: 'btn btn-danger' %>
     <% end %>
   <% end %>
 </div>

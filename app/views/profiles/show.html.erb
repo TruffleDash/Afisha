@@ -1,0 +1,48 @@
+<div class="container" style="background-color: #f8f9fa;"> 
+  <h1 class="text-center" style="color: #6c757d;">Profile</h1>
+
+  <h3 class="text-center" style="color: #6c757d;">Login:</h3>
+  <span style="color: #6c757d;"> <%= current_user.email %></span> 
+  
+  <h3 class="text-center" style="color: #6c757d;">Password:</h3>
+    <div class="row">
+      <%= form_for @user, url: user_password_path, method: :put do |f| %>
+      <div class="col-md-6">
+        <%= f.label :password, "New password" %><br>
+        <%= f.password_field :password, class: 'form-control', style: "background-color: #e2e6ea;" %><br>
+      </div>
+      <div class="col-md-6">
+        <%= f.label :password_confirmation, "Confirm new password" %><br>
+        <%= f.password_field :password_confirmation, class: 'form-control', style: "background-color: #e2e6ea;" %><br>
+      </div>
+      <div class="col-md-6">
+        <%= f.submit "Change my password", class: "btn btn-info" %> 
+      </div>
+      <% end %>
+    </div>
+
+  <h3 class="text-center" style="color: #6c757d;">My tickets:</h3>
+    <div class="row">
+      <div class="col-md-6">
+        <h4 class="text-center" style="color: #6c757d;">Past concerts:</h4>
+        <% @tickets.each do |ticket| %>
+          <% if ticket.concert.event_date < Date.today %>
+            <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+
+      <div class="col-md-6">
+        <h4 class="text-center" style="color: #6c757d;">Upcoming concerts:</h4>
+        <% @tickets.each do |ticket| %>
+          <% if ticket.concert.event_date >= Date.today %>
+            <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
+              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %></p>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+   </div>
+</div>

@@ -12,4 +12,6 @@ Rails.application.routes.draw do
       delete :delete_ticket
     end
   end
+
+  resources :profiles, only: [:show]
 end

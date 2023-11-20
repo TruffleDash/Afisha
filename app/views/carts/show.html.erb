@@ -17,7 +17,7 @@
       <% end %>
     <%= form_with model: @cart, url: buy_ticket_cart_path, method: :put, local: true do |form| %>
         <%= form.hidden_field :cart_id, value: @cart.id %>
-        <%= form.submit "Buy Tickets", class: "btn btn-primary" %>
+        <%= form.submit "Buy Tickets", class: "btn btn-info" %>
     <% end %>
   <% else %>
     <p class="no-tickets" style="color: #d63384;">You don't have tickets</p>
