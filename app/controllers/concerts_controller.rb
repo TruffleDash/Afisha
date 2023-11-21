@@ -32,9 +32,12 @@ class ConcertsController < ApplicationController
   end
 
   def destroy
-    Concert.find(params[:id]).destroy
+    @concert = Concert.find(params[:id])
+    @concert.destroy
+    TicketMailer.with(concert: @concert).ticket_deleted_email.deliver_now
     redirect_to root_path
   end
+
   private
 
   def concert_params
