@@ -1,0 +1,31 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci      
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: myapp_development
+      MYSQL_USER: myappuser
+      MYSQL_PASSWORD: myapppassword
+    ports:
+      - "3306:3306"
+
+  web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/myapp
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USERNAME: myappuser
+      DB_PASSWORD: myapppassword
+    depends_on:
+      - db
+
+volumes:
+  mysql_data:

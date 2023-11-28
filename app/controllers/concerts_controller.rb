@@ -16,6 +16,9 @@ class ConcertsController < ApplicationController
     @concert = Concert.new(concert_params)
 
     if @concert.save
+      Concert::SEATS.values.flatten.each do |seat|
+        @concert.tickets.create(seat: seat)
+      end
       redirect_to @concert
     else
       render :new, status: :unprocessable_entity

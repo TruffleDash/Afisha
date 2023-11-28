@@ -5,7 +5,7 @@
     has_many :cart_items
     has_many :carts, through: :cart_items
 
-    before_create :fill_zone, :fill_price, :fill_status
+    before_create :fill_zone, :fill_price, :fill_status, :fill_number
     after_create :hide_concert
 
     def fill_zone
@@ -19,6 +19,10 @@
     def fill_status
       self.status = 'avaliable'
     end
+
+    def fill_number
+      self.number = rand(1000000000..9999999999)
+    end    
 
     def hide_concert
       if available_seats(concert).blank?

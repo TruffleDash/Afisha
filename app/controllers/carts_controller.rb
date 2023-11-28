@@ -9,7 +9,7 @@ class CartsController < ApplicationController
       ticket.cart_items.destroy_all
       ticket.user = current_user
       ticket.save
-      TicketMailer.with(user: current_user, ticket: ticket, concert: ticket.concert).ticket_email.deliver_now
+      # TicketMailer.with(user: current_user, ticket: ticket, concert: ticket.concert).ticket_email.deliver_now
     end
     redirect_to cart_path(current_user.cart.id)
   end

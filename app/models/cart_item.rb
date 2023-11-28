@@ -7,6 +7,6 @@ class CartItem < ApplicationRecord
   end
 
   def self.clear_expired_reservations
-    where('created_at < ?', 20.minutes.ago).destroy_all
+    where('created_at > ?', 20.minutes.ago).destroy_all
   end
 end

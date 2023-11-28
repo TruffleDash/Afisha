@@ -3,7 +3,11 @@ Rails.application.routes.draw do
   root "concerts#index"
   
   resources :concerts do
-    resources :tickets
+    resources :tickets do
+      collection do
+        put :add_to_cart
+      end
+    end
   end
 
   resources :carts, only: [:show] do
@@ -13,5 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :profiles, only: [:show]
+  resources :profiles, only: [:show] do
+    member do
+      put :return_ticket
+    end
+  end
 end
