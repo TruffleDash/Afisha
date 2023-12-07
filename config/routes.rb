@@ -10,6 +10,13 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :tickets do
+    collection do
+      get :find_ticket
+    end
+  end
+
   resources :carts, only: [:show] do
     member do
       put :buy_ticket

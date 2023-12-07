@@ -26,6 +26,19 @@ services:
       DB_PASSWORD: myapppassword
     depends_on:
       - db
+    stdin_open: true 
+    tty: true
+
+  pass:
+    build: ../pass
+    volumes:
+      - ../pass:/myapp
+    ports:
+      - "3001:3001" 
+    stdin_open: true 
+    tty: true
+    depends_on:
+      - web
 
 volumes:
   mysql_data:

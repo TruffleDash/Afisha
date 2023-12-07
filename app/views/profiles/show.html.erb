@@ -28,7 +28,7 @@
         <% @tickets.each do |ticket| %>
           <% if ticket.concert.event_date < Date.today %>
             <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
-              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %></p>
+              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %> number <%= ticket.number %> </p>
             </div>
           <% end %>
         <% end %>
@@ -39,7 +39,7 @@
         <% @tickets.each do |ticket| %>
           <% if ticket.concert.event_date >= Date.today %>
             <div style="background-color: #e9ecef; border: 1px solid #dee2e6; padding: 10px; margin-bottom: 10px; border-radius: 4px;">
-              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %></p>
+              <p style="color: #495057;"><%= ticket.concert.title %> - Seat <%= ticket.seat %> - Date <%= ticket.concert.event_date %> number <%= ticket.number %></p>
               <%= form_with model: @profile, method: :put, url: return_ticket_profile_path do |form| %>
                 <%= form.hidden_field :ticket_id, value: ticket.id %>
                 <%= form.submit 'Return Ticket', class: 'btn btn-danger' %>
