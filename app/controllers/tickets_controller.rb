@@ -11,10 +11,10 @@ class TicketsController < ApplicationController
 
   def find_ticket
     ticket = Ticket.find_by(number: params[:number])
-    if ticket.blank?
+    if ticket.blank? || ticket.user.blank?
       render json: {}
     else
-      render json: ticket.attributes.merge('user' => ticket.user)
+      render json: ticket.attributes.merge('user' => ticket.user, 'concert' => ticket.concert)
     end
   end
 
