@@ -48,3 +48,15 @@
 Управление мероприятиями: добавление, редактирование, удаление.
 Управление пользователями: блокировка, удаление.
 Просмотр статистики продаж и общей активности.
+
+
+## Запуск
+1. docker-compose build
+2. docker-compose up
+3. docker-compose exec app bash
+   2.2 rails db:create
+   2.3 rails db:migrate
+4. генерация админа - (пароль и логин) rake create_admin
+
+   afisha - localhost:3000
+   pass - localhost:3001
